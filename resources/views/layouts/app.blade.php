@@ -20,7 +20,7 @@
 
 <body>
 
-    <main class="bg-light">
+    <main class="bg-black">
         @yield('content')
     </main>
 
