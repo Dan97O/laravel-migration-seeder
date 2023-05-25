@@ -10,7 +10,7 @@ class PageController extends Controller
     public function index()
     {
         //dd(Train::all());
-        $trains = Train::orderByDesc('id');
+        $trains = Train::all();
         return view('home', compact('trains'));
     }
 }

@@ -1,30 +1,23 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+@extends('layouts.app')
 
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Laravel</title>
+@section('content')
+    @foreach ($trains as $train)
+        <div class="card my-3">
+            <div class="card-body">
+                <h4 class="card-title"><strong> {{ $train->departure_station }}</strong> <i class="fa fa-arrow-right"
+                        aria-hidden="true"></i> <strong> {{ $train->arrival_station }} </strong></h4>
+                <p class="card-text"><strong> {{ $train->departure_time }}</strong> <i class="fa fa-arrow-right"
+                        aria-hidden="true"></i><strong> {{ $train->arrival_time }}</strong></p>
+                <p class="card-text">{{ $train->company }}</p>
 
-    <!-- Fonts -->
-    <link href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+                @if ($train->cancelled)
+                    <span class="badge text-bg-danger">Cancelled</span>
+                @else
+                    <span class="badge text-bg-success">On Time</span>
+                @endif
 
-    <!-- Styles -->
-    @vite('resources/js/app.js')
-
-</head>
-
-<body>
-
-    <main class="bg-light">
-        @foreach ($trains as $train)
-            <p>
-                {{ $train->company }}
-            </p>
-        @endforeach
-    </main>
-
-</body>
-
-</html>
+            </div>
+        </div>
+    @endforeach
+@endsection
